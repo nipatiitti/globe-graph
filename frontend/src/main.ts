@@ -1,49 +1,16 @@
-import { SerializedGraph } from 'graphology-types'
-import serializedGraph from './data.json'
-import { graph } from './graph'
-import { findAllRoutes } from './graph/route'
-import { initializeState } from './graph/state'
-import { Edge, Node } from './types/graph'
-import { map } from './utils'
+import { data } from './data'
+import { graph } from './visualization'
+import { findAllRoutes } from './visualization/route'
+import { initializeState } from './visualization/state'
 
 initializeState()
 
-const data = serializedGraph as SerializedGraph<Node, Edge>
-const mapper = map(0, 10, 1.5, 6)
-
-let lowcosts = 0
-let nonLowcosts = 0
-
 for (const node of data.nodes) {
-  graph.addNode(
-    node.key,
-    node.attributes
-      ? {
-          ...node.attributes,
-          size: mapper(node.attributes.size)
-        }
-      : {}
-  )
+  graph.addNode(node.key, node.attributes)
 }
 
 for (const edge of data.edges) {
-  if (edge.attributes && edge.attributes.lowcost) {
-    lowcosts++
-  } else {
-    nonLowcosts++
-  }
-  graph.addDirectedEdgeWithKey(
-    edge.key,
-    edge.source,
-    edge.target,
-    edge.attributes
-      ? {
-          ...edge.attributes,
-          color: 'rgba(0, 0, 0, 0.1)',
-          size: edge.attributes.size * 0.1
-        }
-      : {}
-  )
+  graph.addDirectedEdgeWithKey(edge.key, edge.source, edge.target, edge.attributes)
 }
 
 function handleFormSubmit(e: Event) {

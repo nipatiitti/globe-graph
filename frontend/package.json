@@ -14,10 +14,12 @@
     "vite": "^5.0.8"
   },
   "dependencies": {
+    "@deck.gl/core": "^8.9.33",
+    "@deck.gl/extensions": "^8.9.33",
+    "@deck.gl/layers": "^8.9.33",
     "file-saver": "^2.0.5",
     "graphology": "^0.25.4",
     "graphology-types": "^0.24.7",
-    "leaflet": "^1.9.4",
-    "sigma": "^3.0.0-beta.4"
+    "leaflet": "^1.9.4"
   }
 }

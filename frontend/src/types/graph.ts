@@ -11,4 +11,7 @@ export type Edge = {
   size: number
   lowcost: boolean
   color: string
+  from_position: [number, number]
+  to_position: [number, number]
+  freq: number
 }

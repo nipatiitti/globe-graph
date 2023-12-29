@@ -62,6 +62,21 @@ const exportGraph = async () => {
       return
     }
 
+    const to = destination.airport
+    const to_position = [+to.longitude, +to.latitude]
+
+    const from = g.getNodeAttributes(destination.iata_from) as Node
+    const from_position = [from.x, from.y]
+
+    // Check if we shouuld add +360 to the longitude to avoid the line to cross the map
+    if (Math.abs(to_position[0] - from_position[0]) > 180) {
+      if (to_position[0] < 0) {
+        to_position[0] += 360
+      } else {
+        from_position[0] += 360
+      }
+    }
+
     g.addDirectedEdgeWithKey(
       `${destination.iata_from}-${destination.iata_to}`,
       destination.iata_from,
@@ -75,6 +90,8 @@ const exportGraph = async () => {
         freq: destination.airlineroutes.reduce((acc, route) => {
           return acc + parseInt(route.flights_per_week)
         }, 0),
+        from_position,
+        to_position,
         carriers: destination.airlineroutes.map((route) => route.carrier_name).join(' // '),
         color: '#00F'
       }

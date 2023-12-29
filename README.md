@@ -17,7 +17,7 @@ scrape("ARN");
 
 ## Frontend
 
-The frontend is a simple [vite.js](https://vitejs.dev/) based Vanilla JS app that uses [sigma.js](http://sigmajs.org/) to display the graph.
+The frontend is a simple [vite.js](https://vitejs.dev/) based Vanilla JS app that uses [Deck.gl](https://deck.gl/) to display the graph.
 
 Simply copy the `graph.json` file from the backend to the `src` folder, rename it to `data.json` and run `yarn dev` to start the dev server.
 
