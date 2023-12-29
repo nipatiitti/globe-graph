@@ -113,7 +113,7 @@ export const deckOverlay = new Deck({
     if (!object) return null
 
     const { label, size } = object as Node
-    return `Airport: ${label} (${Math.round(size * 50)})`
+    return `${object.key || 'Airport'}: ${label} (${Math.round(size * 50)})`
   },
   onClick: ({ object }) => {
     setHoveredNode(object?.key)
